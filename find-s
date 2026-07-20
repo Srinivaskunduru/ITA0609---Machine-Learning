@@ -1,0 +1,26 @@
+# FIND-S Algorithm Implementation
+
+# Training Data
+data = [
+    ['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Warm', 'Same', 'Yes'],
+    ['Rainy', 'Cold', 'High', 'Strong', 'Warm', 'Change', 'No'],
+    ['Sunny', 'Warm', 'High', 'Strong', 'Cool', 'Change', 'Yes']
+]
+
+# Initialize hypothesis with None
+hypothesis = ['0'] * (len(data[0]) - 1)
+
+print("Initial Hypothesis:", hypothesis)
+
+# FIND-S Algorithm
+for sample in data:
+    if sample[-1] == "Yes":   # Consider only positive examples
+        for i in range(len(hypothesis)):
+            if hypothesis[i] == '0':
+                hypothesis[i] = sample[i]
+            elif hypothesis[i] != sample[i]:
+                hypothesis[i] = '?'
+
+print("\nFinal Most Specific Hypothesis:")
+print(hypothesis)
