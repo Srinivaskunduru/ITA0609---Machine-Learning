@@ -1,0 +1,28 @@
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+# Dataset
+X = [
+    [99, 1],
+    [149, 2],
+    [199, 3],
+    [249, 5],
+    [299, 8],
+    [399, 12],
+    [499, 15],
+    [599, 20]
+]
+
+y = [0, 0, 0, 1, 1, 1, 1, 1]
+
+# Train model
+model = LogisticRegression()
+model.fit(X, y)
+
+# Predict
+pred = model.predict(X)
+
+# Results
+print("Predicted:", pred)
+print("Confusion Matrix:\n", confusion_matrix(y, pred))
+print("Accuracy:", accuracy_score(y, pred))
