@@ -1,0 +1,23 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+
+data = pd.DataFrame({
+    'Area':[800,1000,1200,1400,1600,1800,2000,2200,2500,2800],
+    'Bedrooms':[2,2,3,3,3,4,4,4,5,5],
+    'Age':[10,8,7,6,5,4,3,2,2,1],
+    'Price':[35,42,50,58,65,75,85,95,110,125]
+})
+
+X = data[['Area','Bedrooms','Age']]
+y = data['Price']
+
+X_train,X_test,y_train,y_test = train_test_split(
+    X,y,test_size=0.2,random_state=42)
+
+model = RandomForestRegressor(n_estimators=100,random_state=42)
+model.fit(X_train,y_train)
+
+prediction = model.predict([[1500,3,5]])
+
+print("Predicted House Price:", prediction[0])
